@@ -25,6 +25,15 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+  List<Icon> scorekeeper = [];
+  List<String> Answers = [
+            'You can lead a cow down stairs but not up stairs.'
+            'Approximately one quarter of human bones are in the feet.'
+            'A slug\'s blood is green.',
+  ];
+
+  int questionNo = 0;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -37,7 +46,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                'This is where the question text will go.',
+                Answers[questionNo],
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -51,6 +60,7 @@ class _QuizPageState extends State<QuizPage> {
           child: Padding(
             padding: EdgeInsets.all(15.0),
             child: FlatButton(
+              // style: TextButton.styleFrom(primary: Colors.green),
               textColor: Colors.white,
               color: Colors.green,
               child: Text(
@@ -58,10 +68,16 @@ class _QuizPageState extends State<QuizPage> {
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 20.0,
+
                 ),
+
               ),
               onPressed: () {
-                //The user picked true.
+              //true click
+                setState(() {
+                  questionNo++;
+                },
+                );
               },
             ),
           ),
@@ -80,11 +96,19 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked false.
+                setState(() {
+                  questionNo++;
+                },
+                );
+
               },
             ),
           ),
         ),
         //TODO: Add a Row here as your score keeper
+        Row(
+          children: scorekeeper,
+        )
       ],
     );
   }
